@@ -589,7 +589,9 @@ Jan 14 - Secure OT Connectivity
   <input type="text" id="ceo_state" placeholder="State" required>
 
   <input type="text" id="ceo_address" placeholder="Home Address" required>
-  
+
+<input type="tel" id="ceo_whatsapp" placeholder="WhatsApp Number" required>
+
 <label style="display:block; margin-top:10px; color:#7a95b0;">
   Date of Birth
 </label>
@@ -954,10 +956,10 @@ function sendCeoEmail(){
   const occupation = document.querySelector("#ceo_occupation").value;
   const state = document.querySelector("#ceo_state").value;
   const address = document.querySelector("#ceo_address").value;
-  
+ const whatsapp = document.querySelector("#ceo_whatsapp").value; 
 
   // VALIDATION
-  if(!firstName || !lastName || !dob || !gender || !occupation || !state || !address){
+  if(!firstName || !lastName || !dob || !gender || !occupation || !state || !address || !whatsapp){
 
     alert("Please fill all fields before sending.");
 
@@ -975,6 +977,7 @@ function sendCeoEmail(){
   occupation: occupation,
   state: state,
   address: address,
+  whatsapp: whatsapp,        
 };
 
   emailjs.send('service_8achlim', 'template_etse7q4', templateParams)
